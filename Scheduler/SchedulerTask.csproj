@@ -1,0 +1,60 @@
+﻿
+<Project Sdk="Microsoft.NET.Sdk"> 
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="CustomTokenProvider\**" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="Repository\**" />
+    <Compile Remove="Util\**" />
+    <Content Remove="CustomTokenProvider\**" />
+    <EmbeddedResource Remove="CustomTokenProvider\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="Repository\**" />
+    <EmbeddedResource Remove="Util\**" />
+    <None Remove="CustomTokenProvider\**" />
+    <None Remove="Models\**" />
+    <None Remove="Repository\**" />
+    <None Remove="Util\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="AppDb.cs" />
+    <Compile Remove="Controllers\BaseController.cs" />
+    <Compile Remove="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="hosting.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="2.1.*" />
+	<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
+   <PackageReference Include="AWSSDK.S3" Version="3.3.110.50" />
+	<PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.1.0" />
+	<PackageReference Include="ncrontab" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookingSystem.Entities\BookingSystem.Entities.csproj" />
+    <ProjectReference Include="..\BookingSystem.Operational\BookingSystem.Operational.csproj" />
+    <ProjectReference Include="..\BookingSystem.Repositories\BookingSystem.Repositories.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+  
+</Project>

@@ -1,0 +1,2 @@
+ERROR 27-11-2023 23:42:57 CronJobs:QueueTransaction [.NET ThreadPool Worker] - An error occurred while saving the entity changes. See the inner exception for details.
+ 

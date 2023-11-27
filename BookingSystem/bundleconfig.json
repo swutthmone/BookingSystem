@@ -1,0 +1,103 @@
+[
+    {
+      "outputFileName": "wwwroot/gwt/css/site.min.css",
+      "inputFiles": [
+        "wwwroot/gwt/css/bootstrap.css",
+        "wwwroot/gwt/css/modules/animate.css",
+        "wwwroot/gwt/css/font.css",
+        "wwwroot/gwt/css/angular-material.css",
+        "wwwroot/gwt/css/md.css",
+        "wwwroot/gwt/css/app.css",
+        "wwwroot/gwt/css/jquery/fullcalendar.css",
+        "wwwroot/gwt/css/jquery/theme.css",
+        "wwwroot/gwt/css/btn.css",
+        "wwwroot/gwt/css/loading-bar.min.css",
+        "wwwroot/gwt/css/modules/bootstrap-timepicker.css", 
+        "wwwroot/gwt/css/morris.css",
+        "wwwroot/gwt/css/modules/abn_tree.css",
+        "wwwroot/gwt/css/modules/angular-slider.css",
+        "wwwroot/gwt/css/modules/ivh-treeview.css",
+        "wwwroot/gwt/css/modules/ivh-treeview-theme-basic.css",
+        "wwwroot/gwt/css/modules/ng-grid.bootstrap.css",
+        "wwwroot/gwt/css/modules/ng-grid.css",
+        "wwwroot/gwt/css/modules/spectrum.css",
+        "wwwroot/gwt/css/modules/rzslider.min.css",
+        "wwwroot/gwt/css/angular-ui-grid/ui-grid.css",
+        "wwwroot/gwt/css/angular-ui-grid/ui-grid-multiselect-filter.css",
+        "wwwroot/gwt/css/docs.css",
+        "wwwroot/gwt/css/toastr.css",
+        "wwwroot/gwt/css/angular-ui-tab-scroll.css"
+      ]
+    },
+    {
+      "outputFileName": "wwwroot/gwt/js/angular.min.js",
+      "inputFiles": [
+        "wwwroot/gwt/vendor/angular/*.js",
+        "wwwroot/gwt/vendor/angular/**/*.js"        
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": true
+      },
+      "sourceMap": false
+    },
+    {
+      "outputFileName": "wwwroot/gwt/js/jquery.min.js",
+      "inputFiles": [
+        "wwwroot/gwt/vendor/jquery/*.js",
+        "wwwroot/gwt/vendor/jquery/**/*.js",
+        "wwwroot/gwt/vendor/jquery/**/**/*.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": true
+      },
+      "sourceMap": false
+    },
+    {
+      "outputFileName": "wwwroot/gwt/js/modules.min.js",
+      "inputFiles": [
+        "wwwroot/gwt/vendor/modules/**/*.js"
+      ],
+      "minify": {
+        "enabled": true,
+        "renameLocals": true
+      },
+      "sourceMap": false
+    },
+    {
+      "outputFileName": "wwwroot/gwt/js/controllers.min.js",
+      "inputFiles": [
+        "wwwroot/gwt/js/controllers/*.js",
+        "wwwroot/gwt/js/controllers/**/*.js",
+        "wwwroot/gwt/js/controllers/**/**/*.js"        
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": true
+      },
+      "sourceMap": false
+    },
+    {
+      "outputFileName": "wwwroot/gwt/js/services.min.js",
+      "inputFiles": [
+        "wwwroot/gwt/js/services/*.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": true
+      },
+      "sourceMap": false
+    },
+    {
+      "outputFileName": "wwwroot/gwt/js/directives.min.js",
+      "inputFiles": [
+        "wwwroot/gwt/js/directives/*.js"
+      ],
+      "minify": {
+        "enabled": false,
+        "renameLocals": true
+      },
+      "sourceMap": false
+    }
+  ]
