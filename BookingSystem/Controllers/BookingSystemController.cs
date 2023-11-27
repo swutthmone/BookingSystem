@@ -350,9 +350,9 @@ namespace BookingSystem
                 if (currentPage > 0 && totalCount > 0)
                 {
                     IEnumerable<dynamic> alarmTmp = PaginatedList<dynamic>.Create(datalist, currentPage, rowsPerPage);
-                    var alarmresult = alarmTmp.Select(x => x).ToList();
+                    var resultlist = alarmTmp.Select(x => x).ToList();
                     GetUserPurchasedPackageListResponse obj = new GetUserPurchasedPackageListResponse();
-                    obj.data = alarmresult;
+                    obj.data = resultlist;
                     obj.total = totalCount;
                     obj.status = 1;
                     obj.message = "GetUserPurchasedPackageList Successfully.";
@@ -652,6 +652,76 @@ namespace BookingSystem
                 // Release the lock
                 Semaphore.Release();
             }
+        }
+        [HttpPost("RetrieveBookingList", Name = "RetrieveBookingList")]
+
+        public RetrieveBookingListResponse RetrieveBookingList([FromBody] RetrieveBookingListRequest param)
+        {
+            dynamic datalist = null;
+            dynamic pobj = param;
+            try
+            {
+                int LogInUserID = Int32.Parse(_tokenData.LoginUserID);
+                int currentPage = 0;
+                int rowsPerPage = 0;
+                if (pobj.pageNumber != null)
+                {
+                    currentPage = (int)pobj.pageNumber;
+                }
+
+                if (pobj.pageSize != null)
+                {
+                    rowsPerPage = (int)pobj.pageSize;
+                }
+                var list = (
+                           from trans in _objdb.TblBookingTransactions
+                           join cl in _objdb.TblCalss on trans.ClassID equals cl.ClassID
+                           where trans.UserID == LogInUserID
+                           select new
+                           {
+                               ClassName = cl.ClassName,
+                               Type = trans.Type == 0 ? "Booking" : "Waiting",
+                               Credit = trans.Credit,
+                               Status = trans.Status == 0 ? "Pending" : (trans.Status == 1 ? "Cancel" : "Booked"),
+                               StartTime = cl.StartTime,
+                               StartDate = cl.StartDate.ToString("yyyy-MM-dd"),
+                               EndDate = cl.EndDate.ToString("yyyy-MM-dd"),
+                               }).Distinct().ToList();
+                datalist = list.AsQueryable();
+                int totalCount = list.Count;
+                if (currentPage > 0 && totalCount > 0)
+                {
+                    IEnumerable<dynamic> alarmTmp = PaginatedList<dynamic>.Create(datalist, currentPage, rowsPerPage);
+                    var resultlist = alarmTmp.Select(x => x).ToList();
+                    RetrieveBookingListResponse obj = new RetrieveBookingListResponse();
+                    obj.data = resultlist;
+                    obj.total = totalCount;
+                    obj.status = 1;
+                    obj.message = "RetrieveBookingList Successfully.";
+                    return obj;
+                }
+                else
+                {
+                    RetrieveBookingListResponse obj = new RetrieveBookingListResponse();
+                    obj.data = datalist;
+                    obj.total = totalCount;
+                    obj.status = 1;
+                    obj.message = "RetrieveBookingList Successfully.";
+                    return obj;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                RetrieveBookingListResponse obj = new RetrieveBookingListResponse();
+                obj.data = datalist;
+                obj.total = 0;
+                obj.status = 0;
+                obj.message = "Fail RetrieveBookingList";
+                Log.Error("Error in RetrieveBookingList " + ex.Message + " " + ex.StackTrace);
+                return obj;
+            }
+
         }
 
         [HttpPost("CancelClassBooking", Name = "CancelClassBooking")]
