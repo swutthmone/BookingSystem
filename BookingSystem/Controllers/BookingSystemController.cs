@@ -11,6 +11,7 @@ using BookingSystem.Operational;
 using BookingSystem.Entities.DTO;
 using Microsoft.Extensions.Caching.Distributed;
 using System.Threading;
+using Microsoft.Extensions.Configuration;
 
 namespace BookingSystem
 {
@@ -736,6 +737,11 @@ namespace BookingSystem
             int LogInUserID = Int32.Parse(_tokenData.LoginUserID);
             int status = 0;
             string message = "";
+
+            var appsettingbuilder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
+            var Configuration = appsettingbuilder.Build();
+            int BookingCancelHr = Convert.ToInt32(Configuration.GetSection("appsettings:BookingCancelHr").Value);
+            
             try
             {
                 var objBookingTransaction = _repositoryWrapper.TblBookingTransaction.FindByCondition(x => x.UserID == LogInUserID && x.ClassID == ClassID).FirstOrDefault();
@@ -767,7 +773,7 @@ namespace BookingSystem
 
                             TimeSpan StartTime = objClass.StartTime;
                             DateTime ClassStartDateTime = objClass.StartDate.Add(StartTime);
-                            DateTime CompareStartDateTime = ClassStartDateTime.AddHours(-4);
+                            DateTime CompareStartDateTime = ClassStartDateTime.AddHours(-BookingCancelHr);
                             if (System.DateTime.Now <= CompareStartDateTime) //Refurn Credit
                             {
                                 var objUserTransactionForBooking = _repositoryWrapper.TblUserTransaction.FindByCondition(x => x.UserID == LogInUserID && x.PackageID == PackageID && x.Type == 1).FirstOrDefault();
