@@ -32,7 +32,7 @@ This project requires .net 6 sdk
 ### How to start
 ```
 git clone https://github.com/swutthmone/BookingSystem.git
-In VSCode --> Open Folder and choose gths-api
+In VSCode --> Open Folder and choose BookingSystem
 Initialize new database with script BookingSystem/References/DatabaseStructure/bookingsystem.sql 
 Update database connection string in appsettings.json
 ```
